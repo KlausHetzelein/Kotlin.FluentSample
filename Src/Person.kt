@@ -1,6 +1,11 @@
 package FluentSample.Src
 
 class Person private constructor(var name: String) : IAnyPerson, IAlivePerson, IDeadPerson, IUnmarriedPerson, IMarriedPerson {
+    override fun reportOther(function: (String) -> Unit): IAnyPerson {
+        function("Na ein erster Test...")
+        return this
+    }
+
     override fun reportState(function: (String) -> Unit, reportStyle: ReportStyle): Person {
         reportStateTo(function, reportStyle)
         return this

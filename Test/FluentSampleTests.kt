@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class TestFluentSample {
-    fun reportHelperFunction(msg: String) : String{
+    fun reportHelperFunction(msg: String): String {
         return msg
     }
 
@@ -30,7 +30,7 @@ class TestFluentSample {
     @Test
     fun assertOnStateInFluentPossible() {
         val person = Person.getsBorn(name = "x")
-        var stateAsString : String = ""
+        var stateAsString: String = ""
 
         person.getsMarried().reportStateVia({ s -> stateAsString = reportHelperFunction(s) })
         val currentState = person.getCurrentState()
@@ -39,10 +39,10 @@ class TestFluentSample {
         assertTrue { stateAsString.contains(EventInPersonsLife.Marriage.toState()) }
     }
 
-   @Test
+    @Test
     fun firstOne() {
         Person.getsBorn("Henry").reportStateVia(::println).
-                getsMarried().reportStateVia(::println).reportStateVia (::println, ReportStyle.ReportAll)
+                getsMarried().reportStateVia(::println).reportStateVia(::println, ReportStyle.ReportAll)
     }
 
     @Test
@@ -63,5 +63,10 @@ class TestFluentSample {
                 .getsMarried().reportState(::println)
                 .getsWidowed().reportState(::println)
                 .dies().reportState(::println, ReportStyle.ReportAll)
+    }
+
+    @Test
+    fun testOtherReport() {
+        Person.getsBorn("Wer?").reportOther(::println).reportOther { println(it) }
     }
 }

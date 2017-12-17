@@ -6,6 +6,7 @@ interface IAnyPerson {
                     reportStyle: ReportStyle = ReportStyle.ReportOnlyCurrentState)
             : IAnyPerson
 
+    fun reportOther(function: (String) -> Unit) : IAnyPerson
     fun getCurrentState(): EventInPersonsLife
 }
 
